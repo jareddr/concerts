@@ -15,8 +15,9 @@ if (Meteor.isServer){
 
 	    	//console.log(code + " -- " + state)
 	    	if(code && state){
-		    	this.response.writeHead(200, {'Content-Type': 'text/html'})
-		    	this.response.end("ok")
+
+		    	this.response.writeHead(301, {'Location': '/thanks'})
+		    	this.response.end()
 
 		    	//save code
 		    	People.update({_id: state}, {$set: {spotifyCode: code}})

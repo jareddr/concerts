@@ -25,6 +25,18 @@ if (Meteor.isClient) {
   				}
   			}
   		})
+	  	
+	  	this.route('thanks', {
+  			path: '/thanks', waitOn: function(){ 
+  				
+  			},
+  			data: function() { 
+  				return {
+  					
+  				}
+  			}
+  		})  		
 	})
+
 	
 }

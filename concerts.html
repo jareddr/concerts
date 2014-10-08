@@ -31,3 +31,14 @@
   	{{name}} - {{count}} tracks <br>
   {{/each}}
 </template>
+
+
+<template name="thanks">
+  <h3>Thanks for signing up, we'll email you when your favorite bands come to town.</h3>
+  {{#if artists}}
+  	<h3>You love the shit out of</h3>
+  {{/if}}
+  {{#each artists}}
+  	{{name}} - {{count}} tracks <br>
+  {{/each}}
+</template>

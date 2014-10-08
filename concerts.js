@@ -22,10 +22,16 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.thanks.helpers({
+    artists: function(){
+      return Artists.find({person: Session.get('person')}, {sort: {count:-1}}).fetch()
+    }
+  });
+
   Template.home.events({
     'click button': function () {
      Meteor.call("spotifyLogin", Session.get('person'), function(err,resp){
-        authPopup = window.open(resp)
+        window.location.assign(resp)
      })
      }
   });
