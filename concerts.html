@@ -1,0 +1,33 @@
+<head>
+  <title>Concerts</title>
+</head>
+
+<body>
+</body>
+
+<template name="content">
+<section class='header'>
+{{> header }}
+</section>
+  <section class='main'>
+	  <div id="container">
+	    {{> yield}}
+	  </div>
+	</section>
+</template>
+
+<template name="header">
+</template>
+
+<template name="loading">
+</template>
+
+<template name="home">
+  <button>Load Spotify Data</button>
+  {{#if artists}}
+  	<h3>You love the shit out of</h3>
+  {{/if}}
+  {{#each artists}}
+  	{{name}} - {{count}} tracks <br>
+  {{/each}}
+</template>
