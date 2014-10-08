@@ -21,6 +21,7 @@ if (Meteor.isServer){
 
 		    	//save code
 		    	People.update({_id: state}, {$set: {spotifyCode: code}})
+		    	console.log('loading npm module')
 		    	// track detail information for album tracks
 		    	var SpotifyWebApi = Meteor.npmRequire('spotify-web-api-node');
 
@@ -30,14 +31,18 @@ if (Meteor.isServer){
 					clientSecret : 'bfde5612aab446928e3bbd0b43767fe4',
 					redirectUri : 'http://localhost:3000/callback'
 				});
-
+				console.log('reqeusting grant')
 				var grant = Async.runSync(function(done) {
 				  spotifyApi.authorizationCodeGrant(code).then(function(data) { done(null,data) }, function(err) { done(err,null) } )
 				});
 
 				//if we got an error, bail out
-				if(grant.error){ return false }
-
+				if(grant.error){ 
+					console.log(grant.error)
+					return false 
+				}
+				
+				console.log('accessing spotify user data')
 				People.update({_id: person}, {$set: {spotifyAccessToken: grant.result.access_token, spotifyRefreshToken: grant.result.refresh_token}})	
 				spotifyApi.setAccessToken(grant.result.access_token);
 				spotifyApi.setRefreshToken(grant.result.refresh_token);
@@ -47,13 +52,18 @@ if (Meteor.isServer){
 				})
 
 				//if we got an error, bail out
-				if(spotifyUser.error){ return false }
+				if(spotifyUser.error){ 
+					console.log(spotifyUser.error)
+					return false 
+				}
 
 				People.update({_id: person}, {$set: {email: spotifyUser.result.email, name: spotifyUser.result.display_name, spotify_user_id: spotifyUser.result.id}})
 
 				var lists = [],
 					limit = 50,
 					total = 99999
+
+				console.log('loading playlists')
 
 				for(var i = 0; i < total; i+=limit){
 					var playlists = Async.runSync(function(done){
@@ -62,7 +72,7 @@ if (Meteor.isServer){
 
 					//if we got an error, bail out
 					if(playlists.error){ 
-						//console.log(playlists)
+						console.log(playlists.error)
 						return false 
 					}
 
@@ -79,6 +89,8 @@ if (Meteor.isServer){
 					limit = 50,
 					total = 99999
 
+				console.log('loading tracks')
+
 				lists.map(function(p){
 
 					var tracks = Async.runSync(function(done){
@@ -87,7 +99,7 @@ if (Meteor.isServer){
 
 					//if we got an error, bail out
 					if(tracks.error){ 
-						//console.log(playlists)
+						console.log(tracks.error)
 						return false 
 					}
 					tracks.result.tracks.items.map(function(t){
@@ -106,7 +118,7 @@ if (Meteor.isServer){
 
 				Artists.remove({person:person})
 				for (var name in artistList) {
-				  console.log(Artists.insert({person:person, name:name, count:artistList[name]}))
+				  Artists.insert({person:person, name:name, count:artistList[name]})
 				}
 
 	      	}
