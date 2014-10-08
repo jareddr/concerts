@@ -16,7 +16,8 @@ if (Meteor.isServer){
 	    	if(code && state){
 
 	    		//update geolocation
-	    		Meteor.call("geoIpLookup", person, "50.197.155.162") //this.request.connection.remoteAddress)
+	    		ip = this.request.connection.remoteAddress != "127.0.0.1" ? this.request.connection.remoteAddress : "50.197.155.162"
+	    		Meteor.call("geoIpLookup", person, ip)
 
 		    	this.response.writeHead(301, {'Location': '/thanks'})
 		    	this.response.end()

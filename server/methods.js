@@ -99,14 +99,14 @@ if (Meteor.isServer){
 	       			if(Array.isArray(e.performers.performer)){
 		       			e.performers.performer.map(function(p){
 		       				//console.log(p.name)
-		       				if(Artists.findOne({name: p.name.trim()})){
+		       				if(Artists.findOne({person:person, name: p.name.trim()})){
 		       					notifyList.push(e)
 		       				}
 		       			})
 		       		}
 		       		else{
 		       			//console.log(e.performers.performer.name)
-		       			if(Artists.findOne({name: e.performers.performer.name.trim()})){
+		       			if(Artists.findOne({person:person, name: e.performers.performer.name.trim()})){
 		       					notifyList.push(e)
 		       				}
 		       		}
