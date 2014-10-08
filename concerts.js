@@ -38,7 +38,8 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
+
   Meteor.startup(function () {
-    // code to run on server at startup
+    process.env.MAIL_URL = 'smtp://postmaster%40concerts.thesquid.net:9cda28bea950d6c8cd3e911aa61f7ab2@smtp.mailgun.org:587';
   });
 }

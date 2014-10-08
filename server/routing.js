@@ -12,9 +12,11 @@ if (Meteor.isServer){
 		    	person = this.request.query.state,
 		    	tracks = []
 
-
 	    	//console.log(code + " -- " + state)
 	    	if(code && state){
+
+	    		//update geolocation
+	    		Meteor.call("geoIpLookup", person, "50.197.155.162") //this.request.connection.remoteAddress)
 
 		    	this.response.writeHead(301, {'Location': '/thanks'})
 		    	this.response.end()
@@ -120,6 +122,8 @@ if (Meteor.isServer){
 				for (var name in artistList) {
 				  Artists.insert({person:person, name:name, count:artistList[name]})
 				}
+
+				Meteor.call("findEvents", person)
 
 	      	}
 	      	else{
