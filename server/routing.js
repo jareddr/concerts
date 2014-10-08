@@ -29,7 +29,7 @@ if (Meteor.isServer){
 				var spotifyApi = new SpotifyWebApi({
 					clientId : '42e6f4a80ac44c98bff1649d3f1a4dff',
 					clientSecret : 'bfde5612aab446928e3bbd0b43767fe4',
-					redirectUri : 'http://localhost:3000/callback'
+					redirectUri : Meteor.absoluteUrl("callback")
 				});
 				console.log('reqeusting grant')
 				var grant = Async.runSync(function(done) {

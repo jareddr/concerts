@@ -11,8 +11,6 @@ if (Meteor.isServer){
 	      });
 
 	      var scopes = ['user-read-private', 'user-read-email', 'playlist-read-private'],
-	      redirectUri = 'https://localhost:3000/callback',
-	      clientId = '42e6f4a80ac44c98bff1649d3f1a4dff',
 	      state = person
 
 	      // Create the authorization URL
