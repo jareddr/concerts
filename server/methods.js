@@ -24,7 +24,7 @@ if (Meteor.isServer){
 	      return id;
        },
        geoIpLookup: function(person,ip){
-       		//console.log("lookup:",person,ip)
+       		console.log("lookup:",person,ip)
        		var link = ip ? "http://freegeoip.net/json/"+ip : "http://freegeoip.net/json/"
        		var request = HTTP.get(link),
        			location = null
