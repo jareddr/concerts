@@ -23,16 +23,29 @@ if (Meteor.isClient) {
   });
 
   Template.thanks.helpers({
-    artists: function(){
-      return Artists.find({person: Session.get('person')}, {sort: {count:-1}}).fetch()
+    person: function(){
+      return People.findOne({_id: Session.get('person')})
+    },
+    name: function(){
+      person = People.findOne({_id: Session.get('person')})
+      if(person && person.name){
+        return person.name.split(" ")[0]
+      }
+      return ""
     }
   });
 
   Template.home.events({
-    'click button': function () {
+    'click [rel="spotify"]': function () {
      Meteor.call("spotifyLogin", Session.get('person'), function(err,resp){
         window.location.assign(resp)
      })
+     },
+     'click [rel="rdio"]': function () {
+     // Meteor.call("spotifyLogin", Session.get('person'), function(err,resp){
+     //    window.location.assign(resp)
+     // })
+      alert("fuck you, how could you possibly think this would be done already!")
      }
   });
 }

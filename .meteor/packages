@@ -7,8 +7,7 @@ meteor-platform
 autopublish
 insecure
 meteorhacks:npm
-
-
+less
 npm-container
 iron:router
 http

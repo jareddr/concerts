@@ -1,13 +1,22 @@
 <head>
-  <title>Concerts</title>
-</script>
+  <meta charset="utf-8">
+  <title>Never miss a show</title>
+  <meta name="description" content="Never miss a concert again">
+  <meta name="author" content="Jared Rapp">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 </body>
 
 <template name="content">
-	    {{> yield}}
+<div class="container">
+  <div class="sixteen columns">
+    <h1 class="" style="margin-top: 40px;">Nate's Neato Concert Reminder Tool</h1>
+  </div>
+    {{> yield}}
+  </div><!-- container -->
 </template>
 
 <template name="header">
@@ -18,7 +27,18 @@
 
 <template name="home">
 
-  <button>Load Spotify Data</button>
+    <div class="add-bottom one-third column">
+      <h3>One click and you'll never miss a show</h3>
+    <p>We'll pull your favorite artists from the music service of your choice and email you once per week about upcoming concerts in your area.</p>
+    
+    </div>
+    <div class="add-bottom one-third column">
+      <a href="#" class='spotify' rel='spotify'>Load Spotify Playlists</a>
+    </div>
+    <div class="add-bottom one-third column">
+      <a href="#" class='rdio' rel='rdio'>Load Rdio Playlists</a>
+    </div>
+
   {{#if artists}}
   	<h3>You love the shit out of</h3>
   {{/if}}
@@ -29,11 +49,7 @@
 
 
 <template name="thanks">
-  <h3>Thanks for signing up, we'll email you when your favorite bands come to town.</h3>
-  {{#if artists}}
-  	<h3>You love the shit out of</h3>
-  {{/if}}
-  {{#each artists}}
-  	{{name}} - {{count}} tracks <br>
-  {{/each}}
+  <div class="add-bottom sixteen columns">
+      <h3>Thanks for signing up {{name}}, we'll email once a week to let you know when your favorite bands come to {{person.location}}.</h3>
+  </div>
 </template>
