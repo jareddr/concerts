@@ -16,7 +16,9 @@ if (Meteor.isServer){
 	    	if(code && state){
 
 	    		//update geolocation
-	    		ip = this.request.connection.remoteAddress != "127.0.0.1" ? this.request.connection.remoteAddress : "50.197.155.162"
+	    		console.log("headers",this.request.headers)
+
+	    		ip = this.request.headers['x-forwarded-for'] != "127.0.0.1" ? this.request.headers['x-forwarded-for'] : "50.197.155.162"
 	    		Meteor.call("geoIpLookup", person, ip)
 
 		    	this.response.writeHead(301, {'Location': '/thanks'})
