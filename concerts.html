@@ -44,7 +44,10 @@
 
 <template name="thanks">
   <div class="add-bottom sixteen columns">
-      <h3>Thanks for signing up {{name}}, we'll email at <a href="#" class='edit' rel='edit-email'>{{person.email}}</a>  <input class='email-edit' name='email' value='{{person.email}}'> once a week to let you know when your favorite bands come within <br/>
-      <input name='radius' value='15'> miles of <input name='location' value="{{person.location}}">.</h3>
+      <p class='thanks'>
+        Thanks for signing up {{name}}, 
+        we'll email at <a href="#" class='edit' rel='edit-email'>{{person.email}} <i class='ion-edit'></i></a>  <input class='email-edit' name='email' value='{{person.email}}'> <i class='ion-checkmark accept'></i> 
+        once a week to let you know when your favorite bands come within <br/>
+      <a href='#' class='edit' rel='edit-radius'>15  <i class='ion-edit'></i></a> <input name='radius' value='15'> <i class='ion-checkmark accept'></i> miles of <a href='#' class='edit' rel='edit-location'>{{person.location}} <i class='ion-edit'></i> </a> <input name='location' value="{{person.location}}"><i class='ion-checkmark accept'></i>.</p>
   </div>
 </template>
