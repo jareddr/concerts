@@ -44,6 +44,7 @@
 
 <template name="thanks">
   <div class="add-bottom sixteen columns">
-      <h3>Thanks for signing up {{name}}, we'll email once a week to let you know when your favorite bands come to {{person.location}}.</h3>
+      <h3>Thanks for signing up {{name}}, we'll email at <a href="#" class='edit' rel='edit-email'>{{person.email}}</a>  <input class='email-edit' name='email' value='{{person.email}}'> once a week to let you know when your favorite bands come within <br/>
+      <input name='radius' value='15'> miles of <input name='location' value="{{person.location}}">.</h3>
   </div>
 </template>

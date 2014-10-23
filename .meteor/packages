@@ -12,4 +12,6 @@ npm-container
 iron:router
 http
 email
+mrt:moment
+mrt:ionicons
 

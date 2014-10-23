@@ -99,12 +99,13 @@ if (Meteor.isServer){
 				lists.map(function(p){
 
 					var tracks = Async.runSync(function(done){
-						spotifyApi.getPlaylist(spotifyUser.result.id, p.id ).then(function(data) { done(null,data) }, function(err) { done(err,null)});
+						spotifyApi.getPlaylist(p.owner.id, p.id ).then(function(data) { done(null,data) }, function(err) { done(err,null)});
 					})
 
 					//if we got an error, bail out
 					if(tracks.error){ 
 						console.log(tracks.error)
+						console.log(p)
 						return false 
 					}
 					tracks.result.tracks.items.map(function(t){

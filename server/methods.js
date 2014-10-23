@@ -82,7 +82,7 @@ if (Meteor.isServer){
        			notifyList = []
        			console.log(user.location)
        		for(var i=0; i<totalEvents; i+=pageSize){
-	       		eventData = HTTP.get("http://api.eventful.com/json/events/search?app_key=PRnBQ2dQxHvKhkcn&q=music&where="+user.location+"&t=Next 7 days&page_number="+pageNumber+"&page_size="+pageSize+"&sort_order=popularity&json_request_id=1")
+	       		eventData = HTTP.get("http://api.eventful.com/json/events/search?app_key=PRnBQ2dQxHvKhkcn&q=music&where="+user.location+"&t=Next 30 days&within=15&page_number="+pageNumber+"&page_size="+pageSize+"&sort_order=popularity&json_request_id=1")
 	       		events = JSON.parse(eventData.content.replace(/var obj = /, "").replace(/; EVDB\.API\._complete\(1, obj\);\n/, ""))
 	       		if(typeof events == "object" && typeof events.events == "object" && typeof events.events.event == "object"){
 	       			eventList = _.union(eventList, events.events.event)
